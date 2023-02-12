@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiController;
 
 /*
@@ -31,7 +32,7 @@ Route::middleware(['auth:karyawan'])->group(function() {
     Route::get('/presensi/create', [PresensiController::class, 'create']);
     Route::post('/presensi/store', [PresensiController::class, 'store']);
 
-    // Edit Profile
-    Route::get('/editprofile', [PresensiController::class, 'editprofile']);
-    Route::post('/presensi/{nik}/updateprofile', [PresensiController::class, 'updateprofile']);
+    // Data Karyawan
+    Route::get('/profile', [KaryawanController::class, 'editmobile']);
+    Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);
 });

@@ -26,10 +26,9 @@
               <strong>Izin</strong>
           </div>
       </a>
-      <a href="/editprofile" class="item">
+      <a href="/profile" class="item {{ request()->is('profile') ? 'active' : '' }}">
           <div class="col">
-              <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline">
-              </ion-icon>
+              <ion-icon name="person-outline"></ion-icon>
               <strong>Profile</strong>
           </div>
       </a>
