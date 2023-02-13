@@ -196,9 +196,12 @@
                                         </div>
                                         <div class="in">
                                             <div>{{ date('d-m-Y', strtotime($d->tgl_presensi)) }}</div>
-                                            <span class="badge badge-success">{{ $d->jam_in }}</span>
                                             <span
-                                                class="badge badge-danger">{{ $presensihariini != null && $presensihariini->jam_out != null ? $d->jam_out : 'Belum Absen' }}</span>
+                                                class="badge badge-success">{{ date('H:i', strtotime($d->jam_in)) }}</span>
+                                            <span
+                                                class="badge badge-danger">{{ $d->jam_out != null ? date('H:i', strtotime($d->jam_out)) : 'Belum Absen' }}</span>
+                                            {{-- <span
+                                                class="badge badge-danger">{{ $presensihariini != null && $presensihariini->jam_out != null ? $d->jam_out : 'Belum Absen' }}</span> --}}
                                         </div>
                                     </div>
                                 </li>
@@ -210,7 +213,16 @@
                             @foreach ($leaderboard as $d)
                                 <li>
                                     <div class="item">
-                                        <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="image">
+                                        @if (!empty($d->foto))
+                                            @php
+                                                $path = Storage::url('uploads/karyawan/' . $d->foto);
+                                            @endphp
+                                            <img src="{{ url($path) }}" alt="image" class="image">
+                                        @else
+                                            <img src="assets/img/sample/avatar/avatar1.jpg" alt="image"
+                                                class="image">
+                                        @endif
+
                                         <div class="in">
                                             <div><b>{{ $d->nama_lengkap }}</b><br>
                                                 <small class="text-muted">{{ $d->jabatan }}</small>

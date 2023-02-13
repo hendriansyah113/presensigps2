@@ -28,9 +28,11 @@ Route::middleware(['auth:karyawan'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/proseslogout', [AuthController::class, 'proseslogout']);
 
-    // Presensi
+    // Data Presensi
     Route::get('/presensi/create', [PresensiController::class, 'create']);
     Route::post('/presensi/store', [PresensiController::class, 'store']);
+    Route::get('/presensi/histori', [PresensiController::class, 'histori']);
+    Route::post('/presensi/gethistori', [PresensiController::class, 'gethistori']);
 
     // Data Karyawan
     Route::get('/profile', [KaryawanController::class, 'editmobile']);

@@ -5,11 +5,11 @@
               <strong>Home</strong>
           </div>
       </a>
-      <a href="#" class="item">
+      <a href="/presensi/histori" class="item {{ request()->is('presensi/histori') ? 'active' : '' }}">
           <div class="col">
               <ion-icon name="calendar-outline" role="img" class="md hydrated" aria-label="calendar outline">
               </ion-icon>
-              <strong>Hostori</strong>
+              <strong>Histori</strong>
           </div>
       </a>
       <a href="/presensi/create" class="item">

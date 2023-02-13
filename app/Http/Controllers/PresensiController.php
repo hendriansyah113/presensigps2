@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Redirect;
 
 class PresensiController extends Controller
 {
@@ -96,5 +94,21 @@ class PresensiController extends Controller
          $kilometers = $miles * 1.609344;
          $meters = $kilometers * 1000;
          return compact('meters');
+     }
+
+     public function histori(){
+        $bulan = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        return view('presensi.histori', compact('bulan'));
+     }
+
+     public function gethistori(Request $request)
+     {
+        $nik = Auth::guard('karyawan')->user()->nik;
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+
+        $histori = DB::table('presensi')->whereRaw('MONTH(tgl_presensi)="' . $bulan . '"')->whereRaw('YEAR(tgl_presensi)="' . $tahun . '"')->where('nik', $nik)->get();
+
+        return view('presensi.gethistori', compact('histori'));
      }
 }
