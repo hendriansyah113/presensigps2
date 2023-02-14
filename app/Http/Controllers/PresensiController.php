@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
 class PresensiController extends Controller
@@ -110,5 +111,40 @@ class PresensiController extends Controller
         $histori = DB::table('presensi')->whereRaw('MONTH(tgl_presensi)="' . $bulan . '"')->whereRaw('YEAR(tgl_presensi)="' . $tahun . '"')->where('nik', $nik)->get();
 
         return view('presensi.gethistori', compact('histori'));
+     }
+
+     public function create_izin()
+     {
+        return view('presensi.create_izin');
+     }
+
+     public function store_izin(Request $request)
+     {
+        $nik = Auth::guard('karyawan')->user()->nik;
+        $tanggal = $request->tanggal;
+        $status = $request->status;
+        $keterangan = $request->keterangan;
+
+        $data = [
+            'nik' => $nik,
+            'tanggal' => $tanggal,
+            'status' => $status,
+            'keterangan' => $keterangan,
+            'status_approve' => 0,
+        ];
+
+        $simpan = DB::table('izin')->insert($data);
+        if($simpan){
+            return redirect('presensi/izin')->with(['success' => 'Data Berhasil Diajukan']);
+        }else{
+            return redirect('presensi/izin')->with(['error' => 'Data Gagal Diajukan']);
+        }
+     }
+
+     public function show_izin()
+     {
+        $nik = Auth::guard('karyawan')->user()->nik;
+        $izin = DB::table('izin')->join('karyawan', 'izin.nik', '=', 'karyawan.nik')->where('izin.nik', $nik)->get();
+        return view('presensi.show_izin', compact('izin'));
      }
 }
