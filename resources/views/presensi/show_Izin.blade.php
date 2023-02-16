@@ -17,6 +17,11 @@
 @section('content')
     <div class="row" style="margin-top: 70px">
         <div class="col">
+            <h4>Histori Izin / Sakit</h4>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col">
             @php
                 $messagesuccess = Session::get('success');
                 $messageerror = Session::get('error');

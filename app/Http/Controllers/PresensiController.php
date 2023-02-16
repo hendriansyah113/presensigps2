@@ -23,6 +23,16 @@ class PresensiController extends Controller
         $nik = Auth::guard('karyawan')->user()->nik;
         $tgl_presensi = date("Y-m-d");
         $jam = date("H:i:s");
+        $setjammasuk = "08:00:00";
+
+        $jam1 = strtotime($setjammasuk);
+        $jam2 = strtotime($jam);
+        if($jam2 >= $jam1){
+            $terlambat = 1;
+        }else{
+            $terlambat = 0;
+        }
+        
         $latitudekantor = -2.2216646929189547;
         $longtitukantor = 113.93111907278704;
         $lokasi = $request->lokasi;
@@ -69,7 +79,8 @@ class PresensiController extends Controller
                     'tgl_presensi' => $tgl_presensi,
                     'jam_in' => $jam,
                     'foto_in' => $fileName,
-                    'lokasi_in' => $lokasi
+                    'lokasi_in' => $lokasi,
+                    'terlambat' => $terlambat,
                 ];
                 $simpan = DB::table('presensi')->insert($data);
                 if($simpan){

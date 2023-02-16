@@ -138,7 +138,7 @@
                         <div class="card">
                             <div class="card-body text-center" style="16px 12px !important; line-height:0.8rem">
                                 <span class="badge bg-danger"
-                                    style="position: absolute; top:7px; right:12px; font-size:0.6rem; z-index:999">0</span>
+                                    style="position: absolute; top:7px; right:12px; font-size:0.6rem; z-index:999">{{ $izin->jmlizin }}</span>
                                 <ion-icon name="newspaper-outline" style="font-size: 1.6rem;" class="text-success mb-1">
                                 </ion-icon>
                                 <span style="font-size: 0.8rem; font-weight:500">Izin</span>
@@ -149,7 +149,7 @@
                         <div class="card">
                             <div class="card-body text-center" style="16px 12px !important; line-height:0.8rem">
                                 <span class="badge bg-danger"
-                                    style="position: absolute; top:7px; right:12px; font-size:0.6rem; z-index:999">0</span>
+                                    style="position: absolute; top:7px; right:12px; font-size:0.6rem; z-index:999">{{ $izin->jmlsakit }}</span>
                                 <ion-icon name="medkit-outline" style="font-size: 1.6rem;" class="text-warning mb-1">
                                 </ion-icon>
                                 <span style="font-size: 0.8rem; font-weight:500">Sakit</span>
@@ -197,7 +197,7 @@
                                         <div class="in">
                                             <div>{{ date('d-m-Y', strtotime($d->tgl_presensi)) }}</div>
                                             <span
-                                                class="badge badge-success">{{ date('H:i', strtotime($d->jam_in)) }}</span>
+                                                class="badge {{ $d->jam_in < '08:00' ? 'bg-success' : 'bg-danger' }}">{{ date('H:i', strtotime($d->jam_in)) }}</span>
                                             <span
                                                 class="badge badge-danger">{{ $d->jam_out != null ? date('H:i', strtotime($d->jam_out)) : 'Belum Absen' }}</span>
                                             {{-- <span
