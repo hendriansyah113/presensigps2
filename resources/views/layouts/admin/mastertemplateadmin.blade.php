@@ -27,7 +27,9 @@
 
     <!-- partial -->
     <div class="main-panel">
-        @yield('content')
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
     </div>
     <!-- main-panel ends -->
     </div>
@@ -50,6 +52,8 @@
     <!-- Custom js for this page -->
     <script src="{{ asset('assets-purple/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets-purple/js/todolist.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('myscript')
     <!-- End custom js for this page -->
 </body>
 

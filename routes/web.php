@@ -55,3 +55,8 @@ Route::middleware(['auth:karyawan'])->group(function() {
     Route::get('/profile', [KaryawanController::class, 'editmobile']);
     Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);
 });
+
+Route::middleware(['auth:user'])->group(function() {
+    Route::get('/presensi/laporan', [PresensiController::class, 'laporan']);
+    Route::post('/presensi/laporan/cetak', [PresensiController::class, 'cetak']);
+});

@@ -44,6 +44,7 @@ class DashboardController extends Controller
 
         $izin = DB::table('izin')
             ->selectRaw('SUM(IF(status="i",1,0)) as jmlizin,SUM(IF(status="s",1,0)) as jmlsakit')
+            ->where('nik', $nik)
             ->whereRaw('MONTH(tanggal)="' . date('m') . '"')
             ->whereRaw('YEAR(tanggal)="' . date('Y') . '"')
             ->first();
@@ -51,7 +52,13 @@ class DashboardController extends Controller
         return view('dashboard.dashboard', compact('presensihariini', 'historibulanini', 'namabulan', 'bulanini', 'tahunini', 'rekappresensi', 'leaderboard', 'izin'));   
     }
 
-    public function dashboardadmin(){
-        return view('dashboard_admin');
+    public function dashboardadmin()
+    {
+        $hariini = date("Y-m-d");
+        $jmlkaryawan = DB::table('karyawan')->count();
+        $jmlhadir = DB::table('presensi')->where('tgl_presensi', $hariini)->count();
+        $jmlizin = DB::table('izin')->where('tanggal', $hariini)->count();
+        $jmlterlambat = DB::table('presensi')->where('terlambat', 1)->where('tgl_presensi', $hariini)->count();
+        return view('dashboard_admin', compact('jmlkaryawan', 'jmlhadir', 'jmlizin', 'jmlterlambat'));
     }
 }

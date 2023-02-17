@@ -158,4 +158,18 @@ class PresensiController extends Controller
         $izin = DB::table('izin')->join('karyawan', 'izin.nik', '=', 'karyawan.nik')->where('izin.nik', $nik)->get();
         return view('presensi.show_izin', compact('izin'));
      }
+
+     public function laporan()
+     {
+        $bulan = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        return view('presensi.laporan', compact('bulan'));
+     }
+
+     public function cetak (Request $request)
+     {
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+
+        return view('presensi.cetak');
+     }
 }
