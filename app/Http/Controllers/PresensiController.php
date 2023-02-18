@@ -78,6 +78,7 @@ class PresensiController extends Controller
                     'nik' => $nik,
                     'tgl_presensi' => $tgl_presensi,
                     'jam_in' => $jam,
+                    'jam_out' => "00:00:00",
                     'foto_in' => $fileName,
                     'lokasi_in' => $lokasi,
                     'terlambat' => $terlambat,
@@ -165,11 +166,49 @@ class PresensiController extends Controller
         return view('presensi.laporan', compact('bulan'));
      }
 
-     public function cetak (Request $request)
+     public function cetak(Request $request)
      {
         $bulan = $request->bulan;
         $tahun = $request->tahun;
+        $bln = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $presensi = DB::table('presensi')->selectRaw('presensi.nik, nama_lengkap, 
+            MAX(IF(DAY(tgl_presensi)= 1, CONCAT(jam_in,"-",jam_out),0)) as tgl_1,
+            MAX(IF(DAY(tgl_presensi)= 2, CONCAT(jam_in,"-",jam_out),0)) as tgl_2,
+            MAX(IF(DAY(tgl_presensi)= 3, CONCAT(jam_in,"-",jam_out),0)) as tgl_3,
+            MAX(IF(DAY(tgl_presensi)= 4, CONCAT(jam_in,"-",jam_out),0)) as tgl_4,
+            MAX(IF(DAY(tgl_presensi)= 5, CONCAT(jam_in,"-",jam_out),0)) as tgl_5,
+            MAX(IF(DAY(tgl_presensi)= 6, CONCAT(jam_in,"-",jam_out),0)) as tgl_6,
+            MAX(IF(DAY(tgl_presensi)= 7, CONCAT(jam_in,"-",jam_out),0)) as tgl_7,
+            MAX(IF(DAY(tgl_presensi)= 8, CONCAT(jam_in,"-",jam_out),0)) as tgl_8,
+            MAX(IF(DAY(tgl_presensi)= 9, CONCAT(jam_in,"-",jam_out),0)) as tgl_9,
+            MAX(IF(DAY(tgl_presensi)= 10, CONCAT(jam_in,"-",jam_out),0)) as tgl_10,
+            MAX(IF(DAY(tgl_presensi)= 11, CONCAT(jam_in,"-",jam_out),0)) as tgl_11,
+            MAX(IF(DAY(tgl_presensi)= 12, CONCAT(jam_in,"-",jam_out),0)) as tgl_12,
+            MAX(IF(DAY(tgl_presensi)= 13, CONCAT(jam_in,"-",jam_out),0)) as tgl_13,
+            MAX(IF(DAY(tgl_presensi)= 14, CONCAT(jam_in,"-",jam_out),0)) as tgl_14,
+            MAX(IF(DAY(tgl_presensi)= 15, CONCAT(jam_in,"-",jam_out),0)) as tgl_15,
+            MAX(IF(DAY(tgl_presensi)= 16, CONCAT(jam_in,"-",jam_out),0)) as tgl_16,
+            MAX(IF(DAY(tgl_presensi)= 17, CONCAT(jam_in,"-",jam_out),0)) as tgl_17,
+            MAX(IF(DAY(tgl_presensi)= 18, CONCAT(jam_in,"-",jam_out),0)) as tgl_18,
+            MAX(IF(DAY(tgl_presensi)= 19, CONCAT(jam_in,"-",jam_out),0)) as tgl_19,
+            MAX(IF(DAY(tgl_presensi)= 20, CONCAT(jam_in,"-",jam_out),0)) as tgl_20,
+            MAX(IF(DAY(tgl_presensi)= 21, CONCAT(jam_in,"-",jam_out),0)) as tgl_21,
+            MAX(IF(DAY(tgl_presensi)= 22, CONCAT(jam_in,"-",jam_out),0)) as tgl_22,
+            MAX(IF(DAY(tgl_presensi)= 23, CONCAT(jam_in,"-",jam_out),0)) as tgl_23,
+            MAX(IF(DAY(tgl_presensi)= 24, CONCAT(jam_in,"-",jam_out),0)) as tgl_24,
+            MAX(IF(DAY(tgl_presensi)= 25, CONCAT(jam_in,"-",jam_out),0)) as tgl_25,
+            MAX(IF(DAY(tgl_presensi)= 26, CONCAT(jam_in,"-",jam_out),0)) as tgl_26,
+            MAX(IF(DAY(tgl_presensi)= 27, CONCAT(jam_in,"-",jam_out),0)) as tgl_27,
+            MAX(IF(DAY(tgl_presensi)= 28, CONCAT(jam_in,"-",jam_out),0)) as tgl_28,
+            MAX(IF(DAY(tgl_presensi)= 29, CONCAT(jam_in,"-",jam_out),0)) as tgl_29,
+            MAX(IF(DAY(tgl_presensi)= 30, CONCAT(jam_in,"-",jam_out),0)) as tgl_30,
+            MAX(IF(DAY(tgl_presensi)= 31, CONCAT(jam_in,"-",jam_out),0)) as tgl_31')
+            ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
+            ->whereRaw('MONTH(tgl_presensi)="' . $bulan . '"')
+            ->whereRaw('YEAR(tgl_presensi)="' . $tahun . '"')
+            ->groupByRaw('presensi.nik,nama_lengkap')
+            ->get();
 
-        return view('presensi.cetak');
+        return view('presensi.cetak', compact('presensi', 'bulan', 'tahun', 'bln'));
      }
 }

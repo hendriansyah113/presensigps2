@@ -20,7 +20,7 @@
             <div class="card-body">
                 <h4 class="card-title">Laporan Presensi</h4>
                 <p class="card-description"> Laporan Presensi </p>
-                <form class="forms-sample" id="frmLaporan" method="POST" action="/presensi/laporan/cetak">
+                <form class="forms-sample" id="frmLaporan" method="POST" action="/presensi/laporan/cetak" target="_blank">
                     @csrf
                     <div class="form-group">
                         <select name="bulan" id="bulan" class="form-control">
