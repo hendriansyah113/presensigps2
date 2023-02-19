@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets-purple/css/style.css') }}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets-purple/images/favicon.ico') }}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body>
@@ -53,6 +54,8 @@
     <script src="{{ asset('assets-purple/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets-purple/js/todolist.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     @stack('myscript')
     <!-- End custom js for this page -->
 </body>

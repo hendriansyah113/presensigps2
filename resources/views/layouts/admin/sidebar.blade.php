@@ -36,6 +36,12 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item {{ request()->is('monitoring') ? 'active' : '' }}">
+                <a class="nav-link" href="/monitoring">
+                    <span class="menu-title">Data Presensi</span>
+                    <i class="mdi mdi-fingerprint menu-icon"></i>
+                </a>
+            </li>
             <li class="nav-item {{ request()->is('presensi/laporan') ? 'active' : '' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#laporan" aria-expanded="false"
                     aria-controls="laporan">

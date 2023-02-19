@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="presencedetail">
                                         <h4 class="presencetitle">Pulang</h4>
-                                        <span>{{ $presensihariini != null && $presensihariini->jam_out != null ? $presensihariini->jam_out : 'Belum Absen' }}</span>
+                                        <span>{{ $presensihariini != null && $presensihariini->jam_out != '00:00:00' ? $presensihariini->jam_out : 'Belum Absen' }}</span>
                                         {{-- <span>{{ $presensihariini->jam_out = '00:00:00' && $presensihariini->jam_out != null ? 'Belum Absen' : $presensihariini->jam_out }}</span> --}}
                                     </div>
                                 </div>

@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Storage;
 
 class PresensiController extends Controller
 {
+    public function index()
+    {
+        return view('presensi.index');
+    }
+    
+    public function show(Request $request)
+    {
+        $tanggal = $request->tanggal;
+        $presensi = DB::table('presensi')
+            ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
+            ->where('tgl_presensi', $tanggal)->get();
+        return view('presensi.show', compact('presensi'));
+    }
+    
     public function create()
     {
         $hariini = date("Y-m-d");
