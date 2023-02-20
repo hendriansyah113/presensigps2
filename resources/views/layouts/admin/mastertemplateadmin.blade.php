@@ -19,6 +19,8 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{ asset('assets-purple/images/favicon.ico') }}" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 
 <body>

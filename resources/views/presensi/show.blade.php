@@ -26,7 +26,28 @@
         <span class="badge bg-danger">Belum Absen</span>
 @endif
 <td>
-    <a href="#" class="btn btn-primary btn-sm"><i class="mdi mdi-map-marker"></i></a>
+    <a href="#" class="btn btn-primary btn-sm showmap" id="{{ $d->id }}"><i
+            class="mdi mdi-map-marker"></i></a>
 </td>
 </tr>
 @endforeach
+<script>
+    $(function() {
+        $(".showmap").click(function(e) {
+            var id = $(this).attr('id');
+            $.ajax({
+                type: "POST",
+                url: "/loadmap",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id: id
+                },
+                cache: false,
+                success: function(respond) {
+                    $("#loadmap").html(respond);
+                }
+            });
+            $("#mdlshowmap").modal("show");
+        });
+    });
+</script>

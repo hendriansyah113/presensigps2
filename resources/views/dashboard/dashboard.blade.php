@@ -200,7 +200,7 @@
                                             <span
                                                 class="badge {{ $d->jam_in < '08:00' ? 'bg-success' : 'bg-danger' }}">{{ date('H:i', strtotime($d->jam_in)) }}</span>
                                             <span
-                                                class="badge badge-danger">{{ $d->jam_out != null ? date('H:i', strtotime($d->jam_out)) : 'Belum Absen' }}</span>
+                                                class="badge badge-danger">{{ $d->jam_out != '00:00:00' ? date('H:i', strtotime($d->jam_out)) : 'Belum Absen' }}</span>
                                             {{-- <span
                                                 class="badge badge-danger">{{ $presensihariini != null && $presensihariini->jam_out != null ? $d->jam_out : 'Belum Absen' }}</span> --}}
                                         </div>

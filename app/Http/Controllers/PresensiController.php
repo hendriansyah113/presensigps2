@@ -20,7 +20,9 @@ class PresensiController extends Controller
         $tanggal = $request->tanggal;
         $presensi = DB::table('presensi')
             ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
-            ->where('tgl_presensi', $tanggal)->get();
+            ->where('tgl_presensi', $tanggal)
+            ->orderBy('jam_in')
+            ->get();
         return view('presensi.show', compact('presensi'));
     }
     
@@ -224,5 +226,14 @@ class PresensiController extends Controller
             ->get();
 
         return view('presensi.cetak', compact('presensi', 'bulan', 'tahun', 'bln'));
+     }
+
+     public function loadmap(Request $request)
+     {
+        $id = $request->id;
+        $presensi = DB::table('presensi')
+        ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
+        ->where('id', $id)->first();
+        return view('presensi.showmap', compact('presensi'));
      }
 }
