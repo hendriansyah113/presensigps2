@@ -28,10 +28,11 @@ class PresensiController extends Controller
     
     public function create()
     {
+        $lokasi = DB::table('lokasi')->where('id', 1)->first();
         $hariini = date("Y-m-d");
         $nik = Auth::guard('karyawan')->user()->nik;
         $cek = DB::table('presensi')->where('tgl_presensi', $hariini)->where('nik', $nik)->count();
-        return view('presensi.create', compact('cek'));
+        return view('presensi.create', compact('cek', 'lokasi'));
     }
 
     public function store(Request $request)
@@ -48,9 +49,11 @@ class PresensiController extends Controller
         }else{
             $terlambat = 0;
         }
-        
-        $latitudekantor = -2.2216646929189547;
-        $longtitukantor = 113.93111907278704;
+  
+        $lokasikantor = DB::table('lokasi')->where('id', 1)->first();
+        $lokkantor = explode(",", $lokasikantor->lokasi);
+        $latitudekantor = $lokkantor[0];
+        $longtitukantor = $lokkantor[1];
         $lokasi = $request->lokasi;
         $lokasiuser = explode(",", $lokasi);
         $latitudeuser = $lokasiuser[0];
@@ -73,7 +76,7 @@ class PresensiController extends Controller
         $fileName = $formatName . ".png";
         $file = $folderPath . $fileName;
 
-        if($radius > 20){
+        if($radius > 100){
             echo "error|Maaf Anda Berada Diluar Radius, Jarak Anda " . $radius . " Meter Dari Kantor|radius";
         }else{
             if($cek > 0){

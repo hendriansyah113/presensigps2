@@ -56,5 +56,19 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item {{ request()->is('/lokasi/create') ? 'active' : '' }}">
+                <a class="nav-link" data-bs-toggle="collapse" href="#konfigurasi" aria-expanded="false"
+                    aria-controls="konfigurasi">
+                    <span class="menu-title">Konfigurasi</span>
+                    <i class="menu-arrow"></i>
+                    <i class="mdi mdi-settings menu-icon"></i>
+                </a>
+                <div class="collapse" id="konfigurasi">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="/lokasi/create">Lokasi</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </nav>

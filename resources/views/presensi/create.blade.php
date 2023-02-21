@@ -73,6 +73,10 @@
         var notifikasi_in = document.getElementById('notifikasi_in');
         var notifikasi_out = document.getElementById('notifikasi_out');
         var radius_sound = document.getElementById('radius_sound');
+        var lokasikantor = "{{ $lokasi->lokasi }}";
+        var lokkantor = lokasikantor.split(",");
+        var latitudekantor = lokkantor[0];
+        var longitudekantor = lokkantor[1];
         Webcam.set({
             height: 480,
             width: 640,
@@ -95,11 +99,11 @@
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
             var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-            var circle = L.circle([-2.2216646929189547, 113.93111907278704], {
+            var circle = L.circle([latitudekantor, longitudekantor], {
                 color: 'red',
                 fillColor: '#f03',
                 fillOpacity: 0.5,
-                radius: 20
+                radius: 100
             }).addTo(map);
         }
 

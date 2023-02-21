@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,4 +63,7 @@ Route::middleware(['auth:user'])->group(function() {
     Route::post('/monitoring/show', [PresensiController::class, 'show']);
     Route::get('/presensi/laporan', [PresensiController::class, 'laporan']);
     Route::post('/presensi/laporan/cetak', [PresensiController::class, 'cetak']);
+
+    Route::get('/lokasi/create', [LokasiController::class, 'create']);
+    Route::post('/lokasi/store', [LokasiController::class, 'store']);
 });
