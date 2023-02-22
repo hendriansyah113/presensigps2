@@ -37,6 +37,22 @@
 </head>
 
 <body>
+    <?php
+    function selisih($jam_masuk, $jam_keluar)
+    {
+        [$h, $m, $s] = explode(':', $jam_masuk);
+        $dtAwal = mktime($h, $m, $s, '1', '1', '1');
+        [$h, $m, $s] = explode(':', $jam_keluar);
+        $dtAkhir = mktime($h, $m, $s, '1', '1', '1');
+        $dtSelisih = $dtAkhir - $dtAwal;
+        $totalmenit = $dtSelisih / 60;
+        $jam = explode('.', $totalmenit / 60);
+        $sisamenit = $totalmenit / 60 - $jam[0];
+        $sisamenit2 = $sisamenit * 60;
+        $jml_jam = $jam[0];
+        return $jml_jam . ':' . round($sisamenit2);
+    }
+    ?>
     <h4 style="font-family:'Poppins'; margin-top:20px">
         LAPORAN PRESENSI KARYAWAN
         <br>
@@ -48,6 +64,7 @@
             <th rowspan="2">NIK</th>
             <th rowspan="2">Nama Lengkap</th>
             <th colspan="31">Tanggal</th>
+            <th rowspan="2">Jam Kerja</th>
             <th rowspan="2">Total Hadir</th>
             <th rowspan="2">Terlambat</th>
         </tr>
@@ -64,6 +81,8 @@
                 <?php
                 $total = 0;
                 $terlambat = 0;
+                $totaljamkerja = 0;
+                $totalmenitkerja = 0;
                 for($i=1; $i<=31; $i++){
                     $tgl = "tgl_".$i;
                     $hadir = $d->$tgl;
@@ -87,10 +106,25 @@
                 <td>
                     <span style="color: {{ $color }}">{{ $jam_masuk }}</span>
                     <span style="color:#0000FF">{{ $jam_pulang }}</span>
+                    <span style="font-weight:bold">
+                        @if (!empty($hadir))
+                            {{ $jam_pulang != '00:00:00' ? ($jam_kerja = selisih($jam_masuk, $jam_pulang)) : ($jam_kerja = '0:0') }}
+                        @else
+                            @php
+                                $jam_kerja = '0:0';
+                            @endphp
+                        @endif
+                        @php
+                            $j = explode(':', $jam_kerja);
+                            $totaljamkerja += $j[0];
+                            $totalmenitkerja += round($j[1] / 60, 1);
+                        @endphp
+                    </span>
                 </td>
                 <?php
                 }
                 ?>
+                <td>{{ $totaljamkerja + $totalmenitkerja }} Jam</td>
                 <td>{{ $total }}</td>
                 <td>{{ $terlambat }}</td>
             </tr>
