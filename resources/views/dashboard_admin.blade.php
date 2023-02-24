@@ -1,69 +1,150 @@
 @extends('layouts.admin.mastertemplateadmin')
 
 @section('content')
-    <div class="page-header">
-        <h3 class="page-title">
-            <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-home"></i>
-            </span> Dashboard
-        </h3>
-        <nav aria-label="breadcrumb">
-            <ul class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                </li>
-            </ul>
-        </nav>
+    <div class="page-header d-print-none">
+        <div class="container-xl">
+            <div class="row g-2 align-items-center">
+                <div class="col">
+                    <!-- Page pre-title -->
+                    <div class="page-pretitle">
+                        Overview
+                    </div>
+                    <h2 class="page-title">
+                        Dashboard
+                    </h2>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 stretch-card grid-margin">
-            <div class="card bg-gradient-danger card-img-holder text-white">
-                <div class="card-body">
-                    <img src="{{ asset('assets-purple/images/dashboard/circle.svg') }}" class="card-img-absolute"
-                        alt="circle-image">
-                    <h4 class="font-weight-normal mb-3">Data Karyawan <i class="mdi mdi-account mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5">{{ $jmlkaryawan }}</h2>
-                    <h6 class="card-text">Data Jumlah Karyawan</h6>
+    <div class="page-body">
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-6 col-xl-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-primary text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                            <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                            <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        Jumlah Karyawan
+                                    </div>
+                                    <div class="text-muted">
+                                        {{ $jmlkaryawan }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3 stretch-card grid-margin">
-            <div class="card bg-gradient-info card-img-holder text-white">
-                <div class="card-body">
-                    <img src="{{ asset('assets-purple/images/dashboard/circle.svg') }}" class="card-img-absolute"
-                        alt="circle-image">
-                    <h4 class="font-weight-normal mb-3">Jumlah Hadir Hari Ini <i
-                            class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5">{{ $jmlhadir }}</h2>
-                    <h6 class="card-text">Jumlah Karyawan Hadir Hari ini</h6>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-success text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-fingerprint" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3"></path>
+                                            <path d="M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6"></path>
+                                            <path d="M12 11v2a14 14 0 0 0 2.5 8"></path>
+                                            <path d="M8 15a18 18 0 0 0 1.8 6"></path>
+                                            <path d="M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        Jumlah Hadir Hari Ini
+                                    </div>
+                                    <div class="text-muted">
+                                        {{ $jmlhadir }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3 stretch-card grid-margin">
-            <div class="card bg-gradient-success card-img-holder text-white">
-                <div class="card-body">
-                    <img src="{{ asset('assets-purple/images/dashboard/circle.svg') }}" class="card-img-absolute"
-                        alt="circle-image">
-                    <h4 class="font-weight-normal mb-3">Jumlah Karyawan Izin / Sakit <i
-                            class="mdi mdi-diamond mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5">{{ $jmlizin }}</h2>
-                    <h6 class="card-text">Jumlah Karyawan Izin / Sakit Hari Ini</h6>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-info text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-file-description" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                            <path
+                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                            </path>
+                                            <path d="M9 17h6"></path>
+                                            <path d="M9 13h6"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        Jumlah Izin Hari Ini
+                                    </div>
+                                    <div class="text-muted">
+                                        {{ $jmlizin }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-3 stretch-card grid-margin">
-            <div class="card bg-gradient-danger card-img-holder text-white">
-                <div class="card-body">
-                    <img src="{{ asset('assets-purple/images/dashboard/circle.svg') }}" class="card-img-absolute"
-                        alt="circle-image">
-                    <h4 class="font-weight-normal mb-3">Jumlah Karyawan Terlambat <i
-                            class="mdi mdi-calendar-clock mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5">{{ $jmlterlambat }}</h2>
-                    <h6 class="card-text">Jumlah Karyawan Terlambat Hari Ini</h6>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card card-sm">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="bg-danger text-white avatar">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alarm"
+                                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 13m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                                            <path d="M12 10l0 3l2 0"></path>
+                                            <path d="M7 4l-2.75 2"></path>
+                                            <path d="M17 4l2.75 2"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div class="col">
+                                    <div class="font-weight-medium">
+                                        Terlambat
+                                    </div>
+                                    <div class="text-muted">
+                                        {{ $jmlterlambat }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

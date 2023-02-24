@@ -1,65 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* @version 1.0.0-beta17
+* @link https://tabler.io
+* Copyright 2018-2023 The Tabler Authors
+* Copyright 2018-2023 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('assets-purple/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets-purple/vendors/css/vendor.bundle.base.css') }}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="{{ asset('assets-purple/css/style.css') }}">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset('assets-purple/images/favicon.ico') }}" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard - Aplikasi Presensi GPS dan Foto Selfie</title>
+    <!-- CSS files -->
+    <link href="{{ asset('tabler/css/tabler.min.css?1674944402') }}" rel="stylesheet" />
+    <link href="{{ asset('tabler/css/tabler-flags.min.css?1674944402') }}" rel="stylesheet" />
+    <link href="{{ asset('tabler/css/tabler-payments.min.css?1674944402') }}" rel="stylesheet" />
+    <link href="{{ asset('tabler/css/tabler-vendors.min.css?1674944402') }}" rel="stylesheet" />
+    <link href="{{ asset('tabler/css/demo.min.css?1674944402') }}" rel="stylesheet" />
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        :root {
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
+
+        body {
+            font-feature-settings: "cv03", "cv04", "cv11";
+        }
+    </style>
 </head>
 
 <body>
-    @include('layouts.admin.navheader')
-
-    @include('layouts.admin.sidebar')
-
-    <!-- partial -->
-    <div class="main-panel">
-        <div class="content-wrapper">
+    <script src="{{ asset('tabler/js/demo-theme.min.js?1674944402') }}"></script>
+    <div class="page">
+        @include('layouts.admin.sidebar')
+        <!-- Navbar -->
+        @include('layouts.admin.header')
+        <div class="page-wrapper">
+            <!-- Page header -->
             @yield('content')
+            @include('layouts.admin.footer')
         </div>
     </div>
-    <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-    <!-- partial -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('assets-purple/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('assets-purple/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('assets-purple/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('assets-purple/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets-purple/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets-purple/js/misc.js') }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <script src="{{ asset('assets-purple/js/dashboard.js') }}"></script>
-    <script src="{{ asset('assets-purple/js/todolist.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- Libs JS -->
+    <script src="{{ asset('tabler/libs/apexcharts/dist/apexcharts.min.js?1674944402') }}" defer></script>
+    <script src="{{ asset('tabler/libs/jsvectormap/dist/js/jsvectormap.min.js?1674944402') }}" defer></script>
+    <script src="{{ asset('tabler/libs/jsvectormap/dist/maps/world.js?1674944402') }}" defer></script>
+    <script src="{{ asset('tabler/libs/jsvectormap/dist/maps/world-merc.js?1674944402') }}" defer></script>
+    <!-- Tabler Core -->
+    <script src="{{ asset('tabler/js/tabler.min.js?1674944402') }}" defer></script>
+    <script src="{{ asset('tabler/js/demo.min.js?1674944402') }}" defer></script>
     @stack('myscript')
-    <!-- End custom js for this page -->
 </body>
 
 </html>

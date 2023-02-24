@@ -32,10 +32,6 @@ Route::middleware(['guest:user'])->group(function() {
     Route::post('/prosesloginadmin', [AuthController::class, 'prosesloginadmin']);
 });
 
-Route::middleware(['auth:user'])->group(function(){
-    Route::get('/dashboardadmin', [DashboardController::class, 'dashboardadmin']);
-});
-
 Route::middleware(['auth:karyawan,user'])->group(function(){
     Route::get('/proseslogout', [AuthController::class, 'proseslogout']);
 });
@@ -58,6 +54,7 @@ Route::middleware(['auth:karyawan'])->group(function() {
 });
 
 Route::middleware(['auth:user'])->group(function() {
+    Route::get('/dashboardadmin', [DashboardController::class, 'dashboardadmin']);
     Route::get('/monitoring', [PresensiController::class, 'index']);
     Route::post('/loadmap', [PresensiController::class, 'loadmap']);
     Route::post('/monitoring/show', [PresensiController::class, 'show']);
