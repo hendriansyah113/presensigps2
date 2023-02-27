@@ -8,15 +8,17 @@
         <td>{{ $d->nik }}</td>
         <td>{{ $d->nama_lengkap }}</td>
         <td>
-            <img src="{{ url($path_in) }}" alt="">
+            <img src="{{ url($path_in) }}" alt="" class="avatar" style="object-fit: cover">
         </td>
         <td>{{ $d->jam_in }}</td>
         <td class="text-center">
-            @if ($d->foto_out == null)
-                <i class="mdi mdi-camera" style="font-size: 2rem; color:yellow"></i>
-            @else
-                <img src="{{ url($path_out) }}" alt="">
-            @endif
+            <div class="avatar">
+                @if ($d->foto_out == null)
+                    <i class="mdi mdi-camera" style="font-size: 2rem; color:yellow"></i>
+                @else
+                    <img src="{{ url($path_out) }}" alt="" class="avatar" style="object-fit: cover">
+                @endif
+            </div>
         </td>
         <td>
             @if ($d->jam_out != '00:00:00')

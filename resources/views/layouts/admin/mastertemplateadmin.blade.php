@@ -20,6 +20,8 @@
     <link href="{{ asset('tabler/css/tabler-payments.min.css?1674944402') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/css/tabler-vendors.min.css?1674944402') }}" rel="stylesheet" />
     <link href="{{ asset('tabler/css/demo.min.css?1674944402') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet"
+        type="text/css" />
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -45,11 +47,10 @@
             @include('layouts.admin.footer')
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>s
     <!-- Libs JS -->
-    <script src="{{ asset('tabler/libs/apexcharts/dist/apexcharts.min.js?1674944402') }}" defer></script>
-    <script src="{{ asset('tabler/libs/jsvectormap/dist/js/jsvectormap.min.js?1674944402') }}" defer></script>
-    <script src="{{ asset('tabler/libs/jsvectormap/dist/maps/world.js?1674944402') }}" defer></script>
-    <script src="{{ asset('tabler/libs/jsvectormap/dist/maps/world-merc.js?1674944402') }}" defer></script>
+    <script src="{{ asset('tabler/libs/litepicker/dist/litepicker.js?1674944402') }}" defer></script>
     <!-- Tabler Core -->
     <script src="{{ asset('tabler/js/tabler.min.js?1674944402') }}" defer></script>
     <script src="{{ asset('tabler/js/demo.min.js?1674944402') }}" defer></script>
