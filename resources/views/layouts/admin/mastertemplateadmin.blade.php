@@ -22,6 +22,7 @@
     <link href="{{ asset('tabler/css/demo.min.css?1674944402') }}" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet"
         type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -54,6 +55,8 @@
     <!-- Tabler Core -->
     <script src="{{ asset('tabler/js/tabler.min.js?1674944402') }}" defer></script>
     <script src="{{ asset('tabler/js/demo.min.js?1674944402') }}" defer></script>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     @stack('myscript')
 </body>
 
