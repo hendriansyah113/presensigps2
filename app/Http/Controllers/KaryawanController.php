@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class KaryawanController extends Controller
 {
+    public function index()
+    {
+        $karyawan = DB::table('karyawan')->orderBy('nama_lengkap')
+            ->join('departemen', 'karyawan.kode_dept', '=', 'departemen.kode_dept')
+            ->get();
+        return view('karyawan.index', compact('karyawan'));
+    }
+    
     public function editmobile()
      {
         $nik = Auth::guard('karyawan')->user()->nik;

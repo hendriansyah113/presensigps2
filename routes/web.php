@@ -63,4 +63,7 @@ Route::middleware(['auth:user'])->group(function() {
 
     Route::get('/lokasi/create', [LokasiController::class, 'create']);
     Route::post('/lokasi/store', [LokasiController::class, 'store']);
+
+    // karyawan
+    Route::get('/karyawan', [KaryawanController::class, 'index']);
 });
