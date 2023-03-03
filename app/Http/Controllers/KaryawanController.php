@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Karyawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -10,12 +11,24 @@ use Illuminate\Support\Facades\Redirect;
 
 class KaryawanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $karyawan = DB::table('karyawan')->orderBy('nama_lengkap')
-            ->join('departemen', 'karyawan.kode_dept', '=', 'departemen.kode_dept')
-            ->get();
-        return view('karyawan.index', compact('karyawan'));
+        $query = Karyawan::query();
+        $query->select('karyawan.*', 'nama_dept');
+        $query->join('departemen', 'karyawan.kode_dept', '=', 'departemen.kode_dept');
+        $query->orderBy('nama_lengkap');
+        if(!empty($request->nama_karyawan)){
+            $query->where('nama_lengkap', 'like', '%' . $request->nama_karyawan . '%');
+        }
+        
+        if(!empty($request->kode_dept)){
+            $query->where('karyawan.kode_dept', 'like', '%' . $request->kode_dept . '%');
+        }
+
+        $karyawan = $query->paginate(2);
+
+        $departemen = DB::table('departemen')->get();
+        return view('karyawan.index', compact('karyawan', 'departemen'));
     }
     
     public function editmobile()
