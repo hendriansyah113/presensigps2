@@ -49,7 +49,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>s
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <!-- Libs JS -->
     <script src="{{ asset('tabler/libs/litepicker/dist/litepicker.js?1674944402') }}" defer></script>
     <!-- Tabler Core -->
@@ -57,6 +57,7 @@
     <script src="{{ asset('tabler/js/demo.min.js?1674944402') }}" defer></script>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('myscript')
 </body>
 
