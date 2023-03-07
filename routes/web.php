@@ -67,4 +67,7 @@ Route::middleware(['auth:user'])->group(function() {
     // karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index']);
     Route::post('/karyawan/store', [KaryawanController::class, 'store']);
+    Route::post('/karyawan/edit', [KaryawanController::class, 'edit']);
+    Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'updatepanel']);
+    Route::post('/karyawan/{nik}/delete', [KaryawanController::class, 'delete']);
 });
