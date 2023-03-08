@@ -1,5 +1,4 @@
 @extends('layouts.admin.mastertemplateadmin')
-
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -39,8 +38,8 @@
                                                 <path d="M12 15l0 3"></path>
                                             </svg>
                                         </span>
-                                        <input type="text" name="tanggal" class="form-control" autocomplete="off"
-                                            placeholder="Tanggal.." id="tanggal">
+                                        <input type="text" name="tanggal" value="{{ date('Y-m-d') }}"
+                                            class="form-control" autocomplete="off" placeholder="Tanggal.." id="tanggal">
                                     </div>
                                 </div>
                             </div>
