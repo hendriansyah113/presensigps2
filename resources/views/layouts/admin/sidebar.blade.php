@@ -243,13 +243,14 @@
                              </svg>
                          </span>
                          <span class="nav-link-title">
-                             Monitoring
+                             Monitoring Presensi
                          </span>
                      </a>
                  </li>
                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
-                         data-bs-auto-close="false" role="button" aria-expanded="false">
+                     <a class="nav-link dropdown-toggle {{ request()->is('karyawan') || request()->is('departemen') ? 'active' : '' }}"
+                         href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
+                         aria-expanded="false">
                          <span class="nav-link-icon d-md-none d-lg-inline-block">
                              <!-- Download SVG icon from http://tabler-icons.io/i/package -->
                              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -270,10 +271,12 @@
                      <div class="dropdown-menu">
                          <div class="dropdown-menu-columns">
                              <div class="dropdown-menu-column">
-                                 <a class="dropdown-item" href="/karyawan">
+                                 <a class="dropdown-item {{ request()->is('karyawan') ? 'active' : '' }}"
+                                     href="/karyawan">
                                      Karyawan
                                  </a>
-                                 <a class="dropdown-item" href="/departemen">
+                                 <a class="dropdown-item {{ request()->is('departemen') ? 'active' : '' }}"
+                                     href="/departemen">
                                      Departemen
                                  </a>
                              </div>

@@ -6,11 +6,8 @@
             <div class="row g-2 align-items-center">
                 <div class="col">
                     <!-- Page pre-title -->
-                    <div class="page-pretitle">
-                        Monitoring
-                    </div>
                     <h2 class="page-title">
-                        Presensi
+                        Monitoring Presensi
                     </h2>
                 </div>
             </div>
@@ -55,10 +52,12 @@
                                                 <th>No.</th>
                                                 <th>NIK</th>
                                                 <th>Nama Karyawan</th>
-                                                <th>Foto</th>
+                                                <th>Departemen</th>
                                                 <th>Jam Masuk</th>
                                                 <th>Foto</th>
                                                 <th>Jam Pulang</th>
+                                                <th>Foto</th>
+                                                <th>Keterangan</th>
                                                 <th>Lokasi</th>
                                             </tr>
                                         </thead>

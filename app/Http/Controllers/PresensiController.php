@@ -19,9 +19,10 @@ class PresensiController extends Controller
     {
         $tanggal = $request->tanggal;
         $presensi = DB::table('presensi')
+            ->select('presensi.*', 'nama_lengkap', 'nama_dept')
             ->join('karyawan', 'presensi.nik', '=', 'karyawan.nik')
+            ->join('departemen', 'karyawan.kode_dept', '=', 'departemen.kode_dept')
             ->where('tgl_presensi', $tanggal)
-            ->orderBy('jam_in')
             ->get();
         return view('presensi.show', compact('presensi'));
     }

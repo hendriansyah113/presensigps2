@@ -3,22 +3,14 @@
         $path_in = Storage::url('/uploads/absensi/' . $d->foto_in);
         $path_out = Storage::url('/uploads/absensi/' . $d->foto_out);
     @endphp
-    <tr class="{{ $d->jam_in > '08:00' ? 'bg-danger text-white' : '' }}">
+    <tr>
         <td>{{ $loop->iteration }}</td>
         <td>{{ $d->nik }}</td>
         <td>{{ $d->nama_lengkap }}</td>
+        <td>{{ $d->nama_dept }}</td>
+        <td>{{ $d->jam_in }}</td>
         <td>
             <img src="{{ url($path_in) }}" alt="" class="avatar" style="object-fit: cover">
-        </td>
-        <td>{{ $d->jam_in }}</td>
-        <td class="text-center">
-            <div class="avatar">
-                @if ($d->foto_out == null)
-                    <i class="mdi mdi-camera" style="font-size: 2rem; color:yellow"></i>
-                @else
-                    <img src="{{ url($path_out) }}" alt="" class="avatar" style="object-fit: cover">
-                @endif
-            </div>
         </td>
         <td>
             @if ($d->jam_out != '00:00:00')
@@ -27,6 +19,29 @@
     @else
         <span class="badge bg-danger">Belum Absen</span>
 @endif
+<td class="text-center">
+    @if ($d->foto_out == null)
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass-high" width="40"
+            height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M6.5 7h11"></path>
+            <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z"></path>
+            <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path>
+        </svg>
+    @else
+        <div class="avatar">
+            <img src="{{ url($path_out) }}" alt="" class="avatar" style="object-fit: cover">
+    @endif
+    </div>
+</td>
+<td>
+    @if ($d->jam_in >= '08:00')
+        <span class="badge bg-danger">Terlambat</span>
+    @else
+        <span class="badge bg-success">Tepat Waktu</span>
+    @endif
+</td>
 <td>
     <a href="#" class="btn btn-primary showmap" id="{{ $d->id }}"><svg xmlns="http://www.w3.org/2000/svg"
             class="icon icon-tabler icon-tabler-map-2" width="40" height="40" viewBox="0 0 24 24"
