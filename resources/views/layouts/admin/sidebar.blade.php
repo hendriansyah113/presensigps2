@@ -285,7 +285,7 @@
                      </div>
                  </li>
                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle {{ request()->is('presensi/laporan') ? 'active show' : '' }}"
+                     <a class="nav-link dropdown-toggle {{ request()->is('presensi/laporan') || request()->is('presensi/rekap') ? 'show' : '' }}"
                          href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
                          aria-expanded="false">
                          <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -306,15 +306,16 @@
                              Laporan
                          </span>
                      </a>
-                     <div class="dropdown-menu {{ request()->is('presensi/laporan') ? 'show' : '' }}">
+                     <div
+                         class="dropdown-menu {{ request()->is('presensi/laporan') || request()->is('presensi/rekap') ? 'show' : '' }}">
                          <div class="dropdown-menu-columns">
                              <div class="dropdown-menu-column">
                                  <a class="dropdown-item {{ request()->is('presensi/laporan') ? 'active' : '' }}"
                                      href="/presensi/laporan">
                                      Presensi
                                  </a>
-                                 <a class="dropdown-item {{ request()->is('departemen') ? 'active' : '' }}"
-                                     href="/departemen">
+                                 <a class="dropdown-item {{ request()->is('presensi/rekap') ? 'active' : '' }}"
+                                     href="/presensi/rekap">
                                      Rekap Presensi
                                  </a>
                              </div>
