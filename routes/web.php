@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartemenController;
+use App\Http\Controllers\KonfigurasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +81,8 @@ Route::middleware(['auth:user'])->group(function() {
     Route::post('/departemen/edit', [DepartemenController::class, 'edit']);
     Route::post('/departemen/{kode_dept}/update', [DepartemenController::class, 'update']);
     Route::post('/departemen/{kode_dept}/delete', [DepartemenController::class, 'delete']);
+
+    // Konfigurasi
+    Route::get('/konfigurasi/lokasikantor', [KonfigurasiController::class, 'lokasikantor']);
+    Route::post('/konfigurasi/updatelokasikantor', [KonfigurasiController::class, 'updatelokasikantor']);
 });
