@@ -53,7 +53,6 @@ class PresensiController extends Controller
   
         $lok_kantor = DB::table('konfigurasi_lokasi')->where('id', 1)->first();
         $lok = explode(",", $lok_kantor->lokasi_kantor);
-        dd($lok);
         $latitudekantor = $lok[0];
         $longtitukantor = $lok[1];
         $lokasi = $request->lokasi;
@@ -268,5 +267,40 @@ class PresensiController extends Controller
             ->get();
 
         return view('presensi.cetakrekap', compact('bulan', 'tahun', 'namabulan', 'rekap'));
+     }
+
+     public function izinsakit()
+     {
+        $izinsakit = DB::table('izin')
+        ->join('karyawan', 'izin.nik', '=', 'karyawan.nik')
+        ->orderBy('tanggal', 'desc')
+        ->get();
+        return view('presensi.izinsakit', compact('izinsakit'));
+     }
+
+     public function approveizinsakit(Request $request)
+     {
+        $status_approved = $request->status_approved;
+        $id_izinsakit_form = $request->id_izinsakit_form;
+        $update = DB::table('izin')->where('id', $id_izinsakit_form)->update([
+            'status_approve' => $status_approved
+        ]);
+        if($update){
+            return Redirect::back()->with(['success' => 'Data Berhasil Di Update']);
+        }else{
+            return Redirect::back()->with(['warning' => 'Data Gagal Di Update']);
+        }
+     }
+
+     public function batalkanizinsakit($id)
+     {
+        $update = DB::table('izin')->where('id', $id)->update([
+            'status_approve' => 0
+        ]);
+        if($update){
+            return Redirect::back()->with(['success' => 'Data Berhasil Di Update']);
+        }else{
+            return Redirect::back()->with(['warning' => 'Data Gagal Di Update']);
+        }
      }
 }

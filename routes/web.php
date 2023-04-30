@@ -56,6 +56,7 @@ Route::middleware(['auth:karyawan'])->group(function() {
 });
 
 Route::middleware(['auth:user'])->group(function() {
+    // Presensi
     Route::get('/dashboardadmin', [DashboardController::class, 'dashboardadmin']);
     Route::get('/monitoring', [PresensiController::class, 'index']);
     Route::post('/loadmap', [PresensiController::class, 'loadmap']);
@@ -67,6 +68,9 @@ Route::middleware(['auth:user'])->group(function() {
 
     Route::get('/lokasi/create', [LokasiController::class, 'create']);
     Route::post('/lokasi/store', [LokasiController::class, 'store']);
+    Route::get('/presensi/izinsakit', [PresensiController::class, 'izinsakit']);
+    Route::post('/presensi/approveizinsakit', [PresensiController::class, 'approveizinsakit']);
+    Route::get('/presensi/{id}/batalkanizinsakit', [PresensiController::class, 'batalkanizinsakit']);
 
     // karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index']);
