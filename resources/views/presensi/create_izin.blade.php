@@ -21,7 +21,7 @@
                 @csrf
                 <div class="form-group basic">
                     <div class="input-wrapper">
-                        <input type="text" name="tanggal" id="tanggal" class="form-control" placeholder="Tanggal"
+                        <input type="date" name="tanggal" id="tanggal" class="form-control" placeholder="Tanggal"
                             autocomplete="off">
                         <i class="clear-input">
                             <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle">
@@ -71,51 +71,29 @@
 @endsection
 @push('myscript')
     <script>
-        mobiscroll.setOptions({
-            locale: mobiscroll
-                .localeEn, // Specify language like: locale: mobiscroll.localePl or omit setting to use default
-            theme: 'ios', // Specify theme like: theme: 'ios' or omit setting to use default
-            themeVariant: 'light' // More info about themeVariant: https://docs.mobiscroll.com/5-22-0/datetime#opt-themeVariant
-        });
-
-        $(function() {
-            // Mobiscroll Date & Time initialization
-            $('#tanggal').mobiscroll().datepicker({
-                controls: ['date'],
-                display: 'bottom', // Specify display mode like: display: 'bottom' or omit setting to use default
-                dateFormat: 'YYYY-MM-DD',
-            });
-        });
-    </script>
-    <script>
-        $(function() {
-            $("#frmIzin").submit(function(e) {
-                var tanggal = $("#tanggal").val();
-                var status = $("#status").val();
-                var keterangan = $("#keterangan").val();
-
-                if (tanggal == "") {
-                    Swal.fire({
-                        title: 'Gagal!',
-                        text: 'Tanggal Harus Diisi',
-                        icon: 'warning',
-                    })
-                    return false;
-                } else if (status == "") {
-                    Swal.fire({
-                        title: 'Gagal!',
-                        text: 'Status Harus Diisi',
-                        icon: 'warning',
-                    })
-                    return false;
-                } else if (keterangan == "") {
-                    Swal.fire({
-                        title: 'Gagal!',
-                        text: 'Keterangan Harus Diisi',
-                        icon: 'warning',
-                    })
-                    return false;
-                }
+        $(document).ready(function() {
+            $("#tanggal").change(function(e) {
+                var tanggal = $(this).val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/presensi/cekpengajuanizin',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        tanggal: tanggal
+                    },
+                    cache: false,
+                    success: function(respond) {
+                        if (respond == 1) {
+                            Swal.fire({
+                                title: 'Oops !',
+                                text: 'Anda Sudah Input Pengajuan Pada Tanggal Tersebut !',
+                                icon: 'warning'
+                            }).then((result) => {
+                                $("#tanggal").val("");
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>

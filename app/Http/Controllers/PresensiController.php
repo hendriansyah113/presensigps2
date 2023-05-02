@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pengajuanizin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 
 class PresensiController extends Controller
 {
@@ -269,12 +270,29 @@ class PresensiController extends Controller
         return view('presensi.cetakrekap', compact('bulan', 'tahun', 'namabulan', 'rekap'));
      }
 
-     public function izinsakit()
+     public function izinsakit(Request $request)
      {
-        $izinsakit = DB::table('izin')
-        ->join('karyawan', 'izin.nik', '=', 'karyawan.nik')
-        ->orderBy('tanggal', 'desc')
-        ->get();
+        $query = Pengajuanizin::query();
+        $query->select('id', 'tanggal', 'izin.nik', 'nama_lengkap', 'jabatan', 'status', 'status_approve', 'keterangan');
+        $query->join('karyawan', 'izin.nik', '=', 'karyawan.nik');
+        if(!empty($request->dari) && !empty($request->sampai)){
+            $query->whereBetween('tanggal', [$request->dari, $request->sampai]);
+        }
+
+        if(!empty($request->nik)){
+            $query->where('izin.nik', $request->nik);
+        }
+
+        if(!empty($request->nama_lengkap)){
+            $query->where('nama_lengkap', 'like', '%' . $request->nama_lengkap . '%');
+        }
+
+        if($request->status_approved === "0" || $request->status_approved === "1" || $request->status_approved === "2"){
+            $query->where('status_approve', $request->status_approved);
+        }
+        $query->orderBy('tanggal', 'desc');
+        $izinsakit = $query->paginate(10);
+        $izinsakit->appends($request->all());
         return view('presensi.izinsakit', compact('izinsakit'));
      }
 
@@ -302,5 +320,14 @@ class PresensiController extends Controller
         }else{
             return Redirect::back()->with(['warning' => 'Data Gagal Di Update']);
         }
+     }
+
+     public function cekpengajuanizin(Request $request)
+     {
+        $tanggal = $request->tanggal;
+        $nik = Auth::guard('karyawan')->user()->nik;
+
+        $cek = DB::table('izin')->where('nik', $nik)->where('tanggal', $tanggal)->count();
+        return $cek;
      }
 }

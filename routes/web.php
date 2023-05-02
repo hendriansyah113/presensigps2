@@ -49,7 +49,8 @@ Route::middleware(['auth:karyawan'])->group(function() {
     Route::get('/presensi/izin', [PresensiController::class, 'show_izin']);
     Route::post('/presensi/store_izin', [PresensiController::class, 'store_izin']);
     Route::get('/presensi/create_izin', [PresensiController::class, 'create_izin']);
-
+    Route::post('/presensi/cekpengajuanizin', [PresensiController::class, 'cekpengajuanizin']);
+    
     // Data Karyawan
     Route::get('/profile', [KaryawanController::class, 'editmobile']);
     Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);

@@ -19,7 +19,6 @@
  <script src="{{ asset('assets/js/base.js') }}"></script>
  <!-- Sweet Alert -->
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
- <script src="{{ asset('assets/datetime/js/mobiscroll.jquery.min.js') }}"></script>
 
  <script>
      am4core.ready(function() {
