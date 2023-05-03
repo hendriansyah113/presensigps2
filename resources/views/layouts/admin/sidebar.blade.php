@@ -347,7 +347,7 @@
                      </div>
                  </li>
                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle {{ request()->is('presensi/laporan') || request()->is('presensi/rekap') ? 'show' : '' }}"
+                     <a class="nav-link dropdown-toggle {{ request()->is('konfigurasi/lokasikantor') || request()->is('konfigurasi/jamkerja') ? 'show' : '' }}"
                          href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
                          aria-expanded="false">
                          <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -367,12 +367,20 @@
                          </span>
                      </a>
                      <div
-                         class="dropdown-menu {{ request()->is('presensi/laporan') || request()->is('presensi/rekap') ? 'show' : '' }}">
+                         class="dropdown-menu {{ request()->is('konfigurasi/lokasikantor') || request()->is('konfigurasi/jamkerja') ? 'show' : '' }}">
                          <div class="dropdown-menu-columns">
                              <div class="dropdown-menu-column">
-                                 <a class="dropdown-item {{ request()->is('presensi/laporan') ? 'active' : '' }}"
+                                 <a class="dropdown-item {{ request()->is('konfigurasi/lokasikantor') ? 'active' : '' }}"
                                      href="/konfigurasi/lokasikantor">
                                      Lokasi Kantor
+                                 </a>
+                             </div>
+                         </div>
+                         <div class="dropdown-menu-columns">
+                             <div class="dropdown-menu-column">
+                                 <a class="dropdown-item {{ request()->is('konfigurasi/jamkerja') ? 'active' : '' }}"
+                                     href="/konfigurasi/jamkerja">
+                                     Jam Kerja
                                  </a>
                              </div>
                          </div>
