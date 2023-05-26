@@ -1,4 +1,4 @@
-<form action="/karyawan/{{ $karyawan->nik }}/update" method="post" id="frmKaryawan" enctype="multipart/form-data">
+<form action="/karyawan/{{ $karyawan->nip }}/updatepanel" method="post" id="frmKaryawan" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-12">
@@ -19,8 +19,8 @@
                         <path d="M19 11l0 2"></path>
                     </svg>
                 </span>
-                <input type="text" value="{{ $karyawan->nik }}" class="form-control" placeholder="NIK.."
-                    name="nik" id="nik" readonly>
+                <input type="text" value="{{ $karyawan->nip }}" class="form-control" placeholder="nip.."
+                    name="nip" id="nip" readonly>
             </div>
         </div>
     </div>
@@ -80,6 +80,24 @@
                 </span>
                 <input type="text" value="{{ $karyawan->no_hp }}" class="form-control" placeholder="No. HP.."
                     name="no_hp" id="no_hp">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="input-icon mb-3">
+                <span class="input-icon-addon">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-at" width="40"
+                        height="40" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                        <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28"></path>
+                    </svg>
+                </span>
+                <input type="email" value="{{ $karyawan->email }}" class="form-control" placeholder="E-mail.."
+                    name="email" id="email">
             </div>
         </div>
     </div>

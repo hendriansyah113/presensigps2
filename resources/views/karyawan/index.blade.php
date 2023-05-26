@@ -96,10 +96,11 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>NIK</th>
+                                                <th>NIP</th>
                                                 <th>Nama</th>
                                                 <th>Jabatan</th>
                                                 <th>No. HP</th>
+                                                <th>E-mail</th>
                                                 <th>Foto</th>
                                                 <th>Divisi</th>
                                                 <th>Aksi</th>
@@ -112,10 +113,11 @@
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $loop->iteration + $karyawan->firstItem() - 1 }}</td>
-                                                    <td>{{ $d->nik }}</td>
+                                                    <td>{{ $d->nip }}</td>
                                                     <td>{{ $d->nama_lengkap }}</td>
                                                     <td>{{ $d->jabatan }}</td>
                                                     <td>{{ $d->no_hp }}</td>
+                                                    <td>{{ $d->email }}</td>
                                                     <td>
                                                         @if (empty($d->foto))
                                                             <img src="{{ asset('assets/img/nophoto.jpg') }}" class="avatar"
@@ -128,7 +130,7 @@
                                                     <td>
                                                         <div class="btn-group">
                                                             <a href="#" class="edit btn btn-info btn-sm"
-                                                                nik="{{ $d->nik }}">
+                                                                nip="{{ $d->nip }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                     class="icon icon-tabler icon-tabler-edit" width="40"
                                                                     height="40" viewBox="0 0 24 24" stroke-width="2"
@@ -145,7 +147,7 @@
                                                                     <path d="M16 5l3 3"></path>
                                                                 </svg>
                                                             </a>
-                                                            <form action="/karyawan/{{ $d->nik }}/delete"
+                                                            <form action="/karyawan/{{ $d->nip }}/delete"
                                                                 method="POST" style="margin-left: 5px">
                                                                 @csrf
                                                                 <a class="delete-confirm btn btn-danger btn-sm">
@@ -211,8 +213,8 @@
                                             <path d="M19 11l0 2"></path>
                                         </svg>
                                     </span>
-                                    <input type="text" value="" class="form-control" placeholder="NIK.."
-                                        name="nik" id="nik">
+                                    <input type="text" value="" class="form-control" placeholder="NIP.."
+                                        name="nip" id="nip">
                                 </div>
                             </div>
                         </div>
@@ -281,6 +283,25 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
+                                <div class="input-icon mb-3">
+                                    <span class="input-icon-addon">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-at"
+                                            width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
+                                            stroke="currentColor" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                            <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28"></path>
+                                        </svg>
+                                    </span>
+                                    <input type="email" value="" class="form-control" placeholder="E-mail.."
+                                        name="email" id="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
                                 <input type="file" class="form-control" name="foto">
                             </div>
                         </div>
@@ -340,14 +361,14 @@
             });
 
             $(".edit").click(function() {
-                var nik = $(this).attr('nik');
+                var nip = $(this).attr('nip');
                 $.ajax({
                     type: 'POST',
                     url: '/karyawan/edit',
                     chace: false,
                     data: {
                         _token: "{{ csrf_token() }}",
-                        nik: nik
+                        nip: nip
                     },
                     success: function(respond) {
                         $("#loadeditform").html(respond);
@@ -380,19 +401,19 @@
             })
 
             $("#frmKaryawan").submit(function() {
-                var nik = $("#nik").val();
+                var nip = $("#nip").val();
                 var nama_lengkap = $("#nama_lengkap").val();
                 var jabatan = $("#jabatan").val();
                 var no_hp = $("#no_hp").val();
                 var kode_dept = $("frmKaryawan").find("#kode_dept").val();
-                if (nik == "") {
+                if (nip == "") {
                     Swal.fire({
                         title: 'Warning!',
-                        text: 'NIK Harus Diisi',
+                        text: 'nip Harus Diisi',
                         icon: 'warning',
                         confirmButtonText: 'Ok'
                     }).then((result) => {
-                        $("#nik").focus();
+                        $("#nip").focus();
                     });
                     return false;
                 } else if (nama_lengkap == "") {

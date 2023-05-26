@@ -7,7 +7,7 @@
          </button>
          <h1 class="navbar-brand navbar-brand-autodark">
              <a href="/dashboardadmin">
-                 <img src="{{ asset('tabler/static/logo-white.svg') }}" width="110" height="32" alt="Tabler"
+                 <img src="{{ asset('tabler/static/kominfo.png') }}" width="110" height="110" alt="Tabler"
                      class="navbar-brand-image">
              </a>
          </h1>
@@ -385,6 +385,26 @@
                              </div>
                          </div>
                      </div>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="/proseslogout">
+                         <span class="nav-link-icon d-md-none d-lg-inline-block">
+                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout"
+                                 width="40" height="40" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                 <path
+                                     d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2">
+                                 </path>
+                                 <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                             </svg>
+                         </span>
+                         <span class="nav-link-title">
+                             Logout
+                         </span>
+                     </a>
                  </li>
              </ul>
          </div>

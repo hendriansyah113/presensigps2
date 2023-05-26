@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <div class="row" style="margin-top: 70px">
+    <div class="row" style="margin-top: 70px;">
         <div class="col">
             @php
                 $messagesuccess = Session::get('success');
@@ -31,7 +31,7 @@
             @endif
         </div>
     </div>
-    <form action="/karyawan/{{ $karyawan->nik }}/update" method="post" enctype="multipart/form-data">
+    <form action="/karyawan/{{ $karyawan->nip }}/update" method="post" enctype="multipart/form-data">
         @csrf
         <div class="col">
             <div class="form-group boxed">
@@ -44,6 +44,12 @@
                 <div class="input-wrapper">
                     <input type="text" class="form-control" value="{{ $karyawan->no_hp }}" name="no_hp"
                         placeholder="No. HP" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group boxed">
+                <div class="input-wrapper">
+                    <input type="email" class="form-control" value="{{ $karyawan->email }}" name="email"
+                        placeholder="E-mail" autocomplete="off">
                 </div>
             </div>
             <div class="form-group boxed">
@@ -63,7 +69,7 @@
                     </span>
                 </label>
             </div>
-            <div class="form-group boxed">
+            <div class="form-group boxed" style="margin-bottom: 70px;">
                 <div class="input-wrapper">
                     <button type="submit" class="btn btn-primary btn-block">
                         <ion-icon name="refresh-outline"></ion-icon>Update

@@ -21,7 +21,7 @@
     @endphp
     <tr>
         <td>{{ $loop->iteration }}</td>
-        <td>{{ $d->nik }}</td>
+        <td>{{ $d->nip }}</td>
         <td>{{ $d->nama_lengkap }}</td>
         <td>{{ $d->nama_dept }}</td>
         <td>{{ $d->jam_in }}</td>

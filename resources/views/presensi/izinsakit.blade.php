@@ -80,8 +80,8 @@
                                             <path d="M19 11l0 2"></path>
                                         </svg>
                                     </span>
-                                    <input type="text" name="nik" id="nik" value="{{ Request('nik') }}"
-                                        class="form-control" placeholder="NIK..">
+                                    <input type="text" name="nip" id="nip" value="{{ Request('nip') }}"
+                                        class="form-control" placeholder="NIP..">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -144,7 +144,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Tanggal</th>
-                                <th>NIK</th>
+                                <th>NIP</th>
                                 <th>Nama Karyawan</th>
                                 <th>Jabatan</th>
                                 <th>Status</th>
@@ -157,8 +157,8 @@
                             @foreach ($izinsakit as $d)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($d->tanggal)) }}</td>
-                                    <td>{{ $d->nik }}</td>
+                                    <td>{{ $d->tanggal }}</td>
+                                    <td>{{ $d->nip }}</td>
                                     <td>{{ $d->nama_lengkap }}</td>
                                     <td>{{ $d->jabatan }}</td>
                                     <td>{{ $d->status == 'i' ? 'Izin' : 'Sakit' }}</td>
@@ -267,7 +267,8 @@
         $(function() {
             $("#approve").click(function(e) {
                 e.preventDefault();
-                var id_izinsakit = $(this).attr("id_izinsakit");
+                var id_izinsakit = $(this).data(
+                    "id_izinsakit"); // Menggunakan data() untuk mendapatkan nilai atribut data-id_izinsakit
                 $("#id_izinsakit_form").val(id_izinsakit);
                 $("#modal-izinsakit").modal("show");
             });
@@ -275,7 +276,7 @@
             $("#dari, #sampai").datepicker({
                 autoclose: true,
                 todayHighlight: true,
-                format: "dd-mm-yyyy"
+                format: "yyyy-mm-dd" // Ubah format menjadi yyyy-mm-dd
             });
         });
     </script>

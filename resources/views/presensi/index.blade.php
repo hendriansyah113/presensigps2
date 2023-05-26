@@ -49,7 +49,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>NIK</th>
+                                                <th>NIP</th>
                                                 <th>Nama Karyawan</th>
                                                 <th>Departemen</th>
                                                 <th>Jam Masuk</th>

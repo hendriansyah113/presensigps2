@@ -14,8 +14,9 @@
     <!-- Set page size here: A5, A4 or A3 -->
     <!-- Set also "landscape" if you need -->
     <style>
-        @page {
-            size: A4
+        body.F4.landscape .sheet {
+            width: 330mm;
+            height: 210mm
         }
 
         #title {
@@ -40,15 +41,15 @@
 
         .tabelpresensi tr th {
             border: 1px solid #131212;
-            padding: 8px;
+            padding: 3px;
             background-color: #dbdbdb;
-            font-size: 8px;
+            font-size: 10px;
         }
 
         .tabelpresensi td {
             border: 1px solid #131212;
-            padding: 5px;
-            font-size: 8px;
+            padding: 3px;
+            font-size: 10px;
         }
 
         .foto {
@@ -61,7 +62,7 @@
 <!-- Set "A5", "A4" or "A3" for class name -->
 <!-- Set also "landscape" if you need -->
 
-<body class="A4 landscape">
+<body class="F4 landscape">
     <?php
     function selisih($jam_masuk, $jam_keluar)
     {
@@ -99,7 +100,7 @@
         </table>
         <table class="tabelpresensi">
             <tr>
-                <th rowspan="2">NIK</th>
+                <th rowspan="2">NIP</th>
                 <th rowspan="2">Nama Karyawan</th>
                 <th colspan="31">Tanggal</th>
                 <th rowspan="2">TH</th>
@@ -116,13 +117,14 @@
             </tr>
             @foreach ($rekap as $d)
                 <tr>
-                    <td>{{ $d->nik }}</td>
+                    <td>{{ $d->nip }}</td>
                     <td>{{ $d->nama_lengkap }}</td>
                     <?php
                     $totalhadir = 0;
                     $totalterlambat = 0;
                     for($i=1; $i<=31; $i++){
                         $tgl = "tgl_".$i;
+                        $izin = "izin_".$i;
                         if(empty($d->$tgl)){
                             $hadir = ['',''];
                             $totalhadir += 0;
@@ -134,8 +136,18 @@
                             }
                         }
                         ?>
-                    <td><span style="color: {{ $hadir[0] > '08:00:00' ? 'red' : '' }}">{{ $hadir[0] }}</span><br>
-                        <span style="color: {{ $hadir[1] < '16:00:00' ? 'red' : '' }}">{{ $hadir[1] }}</span>
+                    <td>
+                        <span style="color: {{ substr($hadir[0], 0, 5) > '08:00' ? 'red' : '' }}">
+                            {{ substr($hadir[0], 0, 5) }}
+                        </span><br>
+                        <span style="color: {{ substr($hadir[1], 0, 5) < '16:00' ? 'red' : '' }}">
+                            {{ substr($hadir[1], 0, 5) }}
+                        </span><br>
+                        @if (!empty($d->$izin))
+                            <span style="color: {{ $d->$izin == 'i' ? 'red' : 'blue' }}">
+                                {{ $d->$izin == 'i' ? 'IZIN' : 'SAKIT' }}
+                            </span>
+                        @endif
                     </td>
                     <?php
                     }

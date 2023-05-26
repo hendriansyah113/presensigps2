@@ -55,10 +55,10 @@
                                 <div class="row mt-2">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <select name="nik" id="nik" class="form-select">
+                                            <select name="nip" id="nip" class="form-select">
                                                 <option value="">Pilih Karyawan</option>
                                                 @foreach ($karyawan as $d)
-                                                    <option value="{{ $d->nik }}">{{ $d->nama_lengkap }}</option>
+                                                    <option value="{{ $d->nip }}">{{ $d->nama_lengkap }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -114,7 +114,7 @@
             $("#frmLaporan").submit(function(e) {
                 var bulan = $("#bulan").val();
                 var tahun = $("#tahun").val();
-                var nik = $("#nik").val();
+                var nip = $("#nip").val();
                 if (bulan == "") {
                     Swal.fire({
                         title: 'Warning!',
@@ -135,14 +135,14 @@
                         $("#tahun").focus();
                     });
                     return false;
-                } else if (nik == "") {
+                } else if (nip == "") {
                     Swal.fire({
                         title: 'Warning!',
                         text: 'Karyawan Harus Dipilih !',
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     }).then((result) => {
-                        $("#nik").focus();
+                        $("#nip").focus();
                     });
                     return false;
                 }

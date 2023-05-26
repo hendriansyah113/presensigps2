@@ -66,6 +66,9 @@
     <audio id="radius_sound">
         <source src="{{ asset('assets/sound/radius.mp3') }}" type="audio/mpeg">
     </audio>
+    <audio id="pulang">
+        <source src="{{ asset('assets/sound/pulang.mp3') }}" type="audio/mpeg">
+    </audio>
 @endsection
 
 @push('myscript')
@@ -73,6 +76,7 @@
         var notifikasi_in = document.getElementById('notifikasi_in');
         var notifikasi_out = document.getElementById('notifikasi_out');
         var radius_sound = document.getElementById('radius_sound');
+        var pulang = document.getElementById('pulang');
         Webcam.set({
             height: 480,
             width: 640,
@@ -125,7 +129,7 @@
                     image: image,
                     lokasi: lokasi
                 },
-                chace: false,
+                cache: false,
                 success: function(respond) {
                     var status = respond.split("|");
                     if (status[0] == "success") {
@@ -135,20 +139,33 @@
                             notifikasi_out.play();
                         }
                         Swal.fire({
-                            title: 'Behasil!',
+                            title: 'Berhasil!',
                             text: status[1],
                             icon: 'success',
-                        })
-                        setTimeout("location.href='/dashboard'", 3000);
-                    } else {
-                        if (status[2] == "radius") {
-                            radius_sound.play();
-                        }
+                        });
+                        setTimeout(function() {
+                            location.href = '/dashboard';
+                        }, 3000);
+                    } else if (status[0] == "sudah_pulang") {
+                        pulang.play();
+                        Swal.fire({
+                            title: 'Peringatan!',
+                            text: status[1],
+                            icon: 'warning',
+                        });
+                    } else if (status[2] == "radius") {
+                        radius_sound.play();
                         Swal.fire({
                             title: 'Error!',
                             text: status[1],
                             icon: 'error',
-                        })
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: status[1],
+                            icon: 'error',
+                        });
                     }
                 }
             });

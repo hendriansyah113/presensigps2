@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
-    <title>E-Presensi Geolocation</title>
+    <title>E-Presensi</title>
     <meta name="description" content="Mobilekit HTML Mobile UI Kit">
     <meta name="keywords" content="bootstrap 4, mobile template, cordova, phonegap, mobile, html" />
     <link rel="icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}" sizes="32x32">
@@ -50,8 +50,9 @@
                     @csrf
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="text" name="nik" class="form-control" id="nik"
-                                placeholder="Masukan NIK...">
+                            <input type="text" name="nip" class="form-control" id="nip"
+                                placeholder="Masukan NIP..." required
+                                oninvalid="setCustomValidity('Harap isi kolom NIP')" oninput="setCustomValidity('')">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -61,7 +62,9 @@
                     <div class="form-group boxed">
                         <div class="input-wrapper">
                             <input type="password" name="password" class="form-control" id="password"
-                                placeholder="Masukan Password...">
+                                placeholder="Masukan Password..." required
+                                oninvalid="setCustomValidity('Harap isi kolom password')"
+                                oninput="setCustomValidity('')">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -69,7 +72,7 @@
                     </div>
 
                     <div class="form-links mt-2">
-                        <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div>
+                        <div><a href="/forgot-password" class="text-muted">Lupa Password?</a></div>
                     </div>
 
                     <div class="form-button-group">

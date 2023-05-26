@@ -39,15 +39,19 @@
             <ul class="listview image-listview">
                 @foreach ($izin as $d)
                     <li>
-                        @php
-                            $path = Storage::url('uploads/karyawan/' . $d->foto);
-                        @endphp
                         <div class="item">
-                            <img src="{{ url($path) }}" alt="image" class="image">
                             <div class="in">
-                                <div>{{ date('d-m-Y', strtotime($d->tanggal)) }}</div>
-                                <span class="badge bg-success">{{ $d->status == 'i' ? 'Izin' : 'Sakit' }}</span>
-                                <span class="badge bg-primary">{{ $d->status_approve == 0 ? 'waiting' : 'Approved' }}</span>
+                                <div>
+                                    <b>{{ date('d-m-Y', strtotime($d->tanggal)) }}
+                                        ({{ $d->status == 's' ? 'Sakit' : 'Izin' }})
+                                    </b><br>
+                                    <small class="text-muted">{{ $d->keterangan }}</small>
+                                </div>
+                                <span
+                                    class="badge {{ $d->status_approve == 0 ? 'bg-primary' : ($d->status_approve == 1 ? 'bg-success' : 'bg-danger') }}">
+                                    {{ $d->status_approve == 0 ? 'Waiting' : ($d->status_approve == 1 ? 'Approved' : 'Rejected') }}
+                                </span>
+
                             </div>
                         </div>
                     </li>

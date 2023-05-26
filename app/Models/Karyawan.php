@@ -3,24 +3,30 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use ResetPasswordNotification;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+
 
 class Karyawan extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = "karyawan";
-    protected $primaryKey = "nik";
+    protected $primaryKey = "nip";
 
     protected $fillable = [
-        'nik',
+        'nip',
         'nama_lengkap',
         'jabatan',
         'no_hp',
+        'foto',
         'password',
+        'email',
     ];
 
     protected $hidden = [
@@ -31,4 +37,10 @@ class Karyawan extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $url = url('/reset-password/' . $token);
+        $this->notify(new ResetPasswordNotification($url));
+    }
 }

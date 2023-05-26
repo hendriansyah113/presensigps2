@@ -39,7 +39,8 @@
                     <select id="bulan" class="form-control form-select">
                         <option value="">Pilih Bulan</option>
                         @for ($i = 1; $i <= 12; $i++)
-                            <option value="{{ $i }}">{{ $bulan[$i] }}</option>
+                            <option value="{{ $i }}" {{ date('m') == $i ? 'selected' : '' }}>{{ $bulan[$i] }}
+                            </option>
                         @endfor
                     </select>
                 </div>
@@ -54,7 +55,8 @@
                         @endphp
 
                         @for ($thn = $tahunmulai; $thn <= $tahunini; $thn++)
-                            <option value="{{ $thn }}">{{ $thn }}</option>
+                            <option value="{{ $thn }}" {{ date('Y') == $thn ? 'selected' : '' }}>
+                                {{ $thn }}</option>
                         @endfor
                     </select>
                 </div>

@@ -8,6 +8,10 @@ use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\KonfigurasiController;
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\ForgotPasswordController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +57,7 @@ Route::middleware(['auth:karyawan'])->group(function() {
     
     // Data Karyawan
     Route::get('/profile', [KaryawanController::class, 'editmobile']);
-    Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'update']);
+    Route::post('/karyawan/{nip}/update', [KaryawanController::class, 'update']);
 });
 
 Route::middleware(['auth:user'])->group(function() {
@@ -77,8 +81,8 @@ Route::middleware(['auth:user'])->group(function() {
     Route::get('/karyawan', [KaryawanController::class, 'index']);
     Route::post('/karyawan/store', [KaryawanController::class, 'store']);
     Route::post('/karyawan/edit', [KaryawanController::class, 'edit']);
-    Route::post('/karyawan/{nik}/update', [KaryawanController::class, 'updatepanel']);
-    Route::post('/karyawan/{nik}/delete', [KaryawanController::class, 'delete']);
+    Route::post('/karyawan/{nip}/updatepanel', [KaryawanController::class, 'updatepanel']);
+    Route::post('/karyawan/{nip}/delete', [KaryawanController::class, 'delete']);
 
     // Departemen
     Route::get('/departemen', [DepartemenController::class, 'index']);
@@ -92,3 +96,16 @@ Route::middleware(['auth:user'])->group(function() {
     Route::post('/konfigurasi/updatelokasikantor', [KonfigurasiController::class, 'updatelokasikantor']);
     Route::get('/konfigurasi/jamkerja', [KonfigurasiController::class, 'jamkerja']);
 });
+
+// ubah password
+// Tampilkan halaman lupa password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+
+// Kirim email reset password
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Tampilkan halaman reset password dengan token
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+// Proses reset password
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
